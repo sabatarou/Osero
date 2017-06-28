@@ -1,4 +1,4 @@
-#include "Osero.h"
+#include "Board.h"
 #include <cassert>
 /*
 	ボードの情報の構造体
