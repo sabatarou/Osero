@@ -111,4 +111,8 @@ class Board
 	void ClearBoard();
 	//ボード内情報を初期化
 	void InitBoard(_Board* board_memory);
-	};
+	//一方向の石を返す
+	int FlipLine(_Board* board_data,int in_color,int in_pos,int in_dir);
+	//敵の色を返す
+	int GetOppositeColor(int in_color);
+};
