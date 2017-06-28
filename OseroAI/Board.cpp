@@ -157,7 +157,9 @@ void Board::InitBoard(_Board* board_memory)
 int  Board::FlipLine(_Board* board_data, int in_color, int in_pos, int in_dir)
 {
 	int result = 0;
-	int op = OPPONENT_COLOR(in_color);
+	int op = GetOppositeColor(in_color);
+	int pos;
+
 	return result;
 }
 /*
@@ -169,7 +171,7 @@ int  Board::FlipLine(_Board* board_data, int in_color, int in_pos, int in_dir)
 
 	–ß‚è’l : ”’•”½‘Î‚ÌF
 */
-int GetOppNentColor(int in_color)
+int Board::GetOppositeColor(int in_color)
 {
-	return (BLACK+WHITE-in_color)
+	return (BLACK + WHITE - in_color);
 }
