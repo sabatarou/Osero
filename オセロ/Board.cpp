@@ -143,3 +143,33 @@ void Board::InitBoard(_Board* board_memory)
 
 	board_memory->Space = board_memory->Stack;
 }
+/*
+	計算関数
+
+	内容 : 一方向の石を返す
+
+	引数 : ボード内情報のポインタ,
+			自分の色,
+			Disk内での座標,
+			返す方向
+	戻り値 : 返した石の数
+*/
+int  Board::FlipLine(_Board* board_data, int in_color, int in_pos, int in_dir)
+{
+	int result = 0;
+	int op = OPPONENT_COLOR(in_color);
+	return result;
+}
+/*
+	計算関数
+
+	内容 : 白黒反対の色を返す
+
+	引数 : 白黒反対にしたい色
+
+	戻り値 : 白黒反対の色
+*/
+int GetOppNentColor(int in_color)
+{
+	return (BLACK+WHITE-in_color)
+}
