@@ -157,7 +157,8 @@ void Board::InitBoard(_Board* board_memory)
 int  Board::FlipLine(_Board* board_data, int in_color, int in_pos, int in_dir)
 {
 	int result = 0;
-	int op = OPPONENT_COLOR(in_color);	return result;
+	int pos = OPPONENT_COLOR(in_color);
+	return result;
 }
 /*
 	åvéZä÷êî
