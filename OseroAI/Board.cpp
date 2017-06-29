@@ -157,7 +157,15 @@ void Board::InitBoard(_Board* board_memory)
 int  Board::FlipLine(_Board* board_data, int in_color, int in_pos, int in_dir)
 {
 	int result = 0;
-	int pos = OPPONENT_COLOR(in_color);
+	int opposite_color = GetOppositeColor(in_color);
+	int flip_pos=0;
+	for (flip_pos = in_pos + in_dir; board_data->Disk[flip_pos] == opposite_color; flip_pos += in_dir){};
+	if (board_data->Disk[flip_pos] == in_color)
+	{
+		result++;
+		board_data->Disk[flip_pos] = in_color;
+		BoardStackPush(board_data, flip_pos);
+	}
 	return result;
 }
 /*
@@ -173,3 +181,26 @@ int Board::GetOppositeColor(int in_color)
 {
 	return (BLACK + WHITE - in_color);
 }
+/*
+    計算関数
+
+    内容 : 盤上の位置スタックに積む
+				
+    引数 : ボード内情報,
+	       盤上の位置
+*/
+
+void Board::BoardStackPush(_Board* board_date, int flip_pos)
+{
+	(*board_date->Space++) = flip_pos; 
+}
+/*
+	計算関数
+
+	内容 : 石を返す
+
+	引数 : ボード内情報,
+		 
+	戻り値 : 
+
+*/
