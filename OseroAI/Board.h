@@ -85,6 +85,18 @@
 #define F8 78
 #define G8 79
 #define H8 80
+/*
+	盤上の方向
+*/
+#define DIR_UP_LEFT		(-BOARD_SIZE-2)
+#define DIR_UP			(-BOARD_SIZE-1)
+#define DIR_UP_RIGHT	(-BOARD_SIZE)
+#define DIR_LEFT		(-1)
+#define DIR_RIGHT		(1)
+#define DIR_DOWN_LEFT	(BOARD_SIZE)
+#define DIR_DOWN		(BOARD_SIZE+1)
+#define DIR_DOWN_RIGHT	(BOARD_SIZE+2)
+
 #include <bitset>
 /*
 ボード管理クラス
@@ -113,6 +125,12 @@ class Board
 	void InitBoard(_Board* board_memory);
 	//一方向の石を返す
 	int FlipLine(_Board* board_data,int in_color,int in_pos,int in_dir);
-	//敵の色を返す
+	//白黒反対の色を返す
 	int GetOppositeColor(int in_color);
+	//返した座標をスタックに書き込み
+	void BoardStackPush(_Board* board_date, int flip_pos);
+	//盤上の石を返す
+	int FlipBoard(_Board *self, int in_color, int in_pos);
+	//返した石を戻す
+	int UnFlipBoard(_Board* board_data);
 };
