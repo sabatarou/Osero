@@ -184,11 +184,26 @@ void Board::BoardStackPush(_Board* board_date, int flip_pos)
 	(*board_date->Space++) = flip_pos; 
 }
 /*
-	内容 : 盤上の石を返す
+
+	内容 : 盤上の位置スタックに積む
 
 	引数 : ボード内情報ポインタ,
-		 
-	戻り値 : 全方向の返した石の合計
+
+	盤上の位置
+*/
+
+int Board::BoardStackPop(_Board *board_data)
+{
+	return (*board_data->Space--);
+}
+/*
+内容 : 盤上の石を返す
+
+ 引数 : ボード内情報ポインタ,
+		返す側の色,
+		石を置く座標
+
+  戻り値 : 全方向の返した石の合計
 */
 int Board::FlipBoard(_Board *borad_data, int in_color, int in_pos)
 {
@@ -229,5 +244,34 @@ int Board::UnFlipBoard(_Board* board_data )
 	{
 		return 0;
 	}
-	result=
+	result = BoardStackPop(board_data);
+	color = BoardStackPop(board_data);
+	board_data->Disk[BoardStackPop(board_data)] = EMPTY;
+	for (i = 0; i < result; i++)
+	{
+		board_data->Disk[BoardStackPop(board_data)] = color;
+	}
+	return result ;
+}
+/*
+	内容 : 一方向に対して返せる石を出力する
+
+	引数 : 返せる石の数
+
+
+*/
+int Board::CountFlipLine(_Board* board_data, int in_color, int in_pos, int in_dir)
+{
+	int result = 0;
+	int opponent_color = GetOppositeColor(in_color);
+	int flip_pos;
+	for (flip_pos = in_pos + in_dir; board_data->Disk[flip_pos] == opponent_color;flip_pos += in_dir)
+	{
+		result++;
+	}
+	if (board_data->Disk[flip_pos] != in_color)
+	{
+		return 0;
+	}
+	return result;
 }
